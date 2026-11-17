@@ -1,0 +1,6 @@
+x_category	group_category	x_code	group_code	n	mean	sd	se	ci95_low	ci95_high
+Less than 15 minutes	All respondents	0		28	22.429	6.828	1.29	19.781	25.076
+15–30 minutes	All respondents	1		16	23.375	5.83	1.457	20.269	26.481
+31–60 minutes	All respondents	2		16	22.875	5.377	1.344	20.01	25.74
+61–90 minutes	All respondents	3		9	22.444	6.579	2.193	17.388	27.501
+More than 90 minutes	All respondents	4		6	23.667	3.204	1.308	20.304	27.029
