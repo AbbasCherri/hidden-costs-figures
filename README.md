@@ -106,6 +106,8 @@ Three journal column widths. Height follows the content.
 
 The exact export dimensions are shown under the figure.
 
+Your style, palette, colours, patterns, title switch and size are remembered on this device (browser localStorage), so the next visit starts where you left off. Data and typed text are never saved. Click Reset saved preferences in the Size card to clear them.
+
 ## Exporting
 
 Three buttons sit below the controls:
@@ -139,7 +141,7 @@ If the browser blocks direct saving or clipboard access, the image opens in a wi
 
 ## Running locally
 
-The app is one self-contained `index.html`, so there is no build step.
+The app is plain HTML, CSS and JavaScript files, so there is no build step.
 
 ```bash
 git clone https://github.com/AbbasCherri/hidden-costs-figures.git
@@ -147,7 +149,7 @@ cd hidden-costs-figures
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
-You can also open `index.html` directly in a browser. The IBM Plex Sans font and the `.xlsx` reader load from the internet; offline, the page uses a fallback font and cannot read workbooks.
+You can also open `index.html` directly in a browser, because the scripts are classic files rather than modules. The IBM Plex Sans font and the `.xlsx` reader load from the internet; offline, the page uses a fallback font and cannot read workbooks.
 
 ## Deploying and project layout
 
@@ -155,9 +157,29 @@ The site is served by GitHub Pages from the root of the `main` branch. Pushing t
 
 ```
 .
-├── index.html    # the whole app: markup, styles, chart code and example data
-├── .nojekyll     # tells GitHub Pages to serve files as-is
+├── index.html                 page markup and the script tags, in load order
+├── css/styles.css             all styles
+├── data/examples.js           built-in sample tables
+├── js/
+│   ├── tokens.js              design tokens and colour palettes
+│   ├── svg.js                 SVG helpers, scales, patterns, class Fig, axes
+│   ├── export.js              SVG and 300 dpi PNG export
+│   ├── chart-kit.js           CHARTS registry and frames shared by every chart
+│   ├── stats.js               statistics used by the scatter chart
+│   ├── parse.js               table detection, pasting, CSV and workbook reading
+│   ├── charts/                one file per group of chart types
+│   │   ├── distribution.js    Bar / Pie, Histogram
+│   │   ├── groups.js          Grouped / stacked, Mean by group, Box plot
+│   │   ├── scatter.js         Scatter
+│   │   ├── bubble-line.js     Bubble / heatmap, Line
+│   │   └── items-corr.js      Item battery, Correlation heatmap
+│   ├── prefs.js               saved preferences (localStorage)
+│   └── app.js                 state, control panel, drawing, export buttons, startup
+├── Figure_Studio_Guide.pdf    step-by-step guide with screenshots
+├── guide-src/                 scripts and screenshots that build the guide
+├── .nojekyll                  tells GitHub Pages to serve files as-is
 └── README.md
 ```
+Scripts load in the order listed in `index.html`. They share one global scope, so a file can use anything defined in the files above it.
 
 To set up Pages on a fork: Settings → Pages → Build and deployment → Deploy from a branch → `main` / `(root)`.
