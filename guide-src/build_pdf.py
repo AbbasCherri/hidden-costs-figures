@@ -4,8 +4,8 @@ import subprocess, re, html, os, sys
 from playwright.sync_api import sync_playwright
 
 D = os.path.dirname(os.path.abspath(__file__)); SH = f"file://{D}/shots/"
-EXPORT = open("exported_name.txt").read().strip()
-BAR_TXT = open("real_table.txt").read()
+EXPORT = open(os.path.join(D, "exported_name.txt")).read().strip()
+BAR_TXT = open(os.path.join(D, "real_table.txt")).read()
 _rows = [r.split("\t") for r in BAR_TXT.strip().split("\n")]
 _w = [max(len(r[i]) for r in _rows) for i in range(len(_rows[0]))]
 BAR_ALIGNED = "\n".join("  ".join(c.ljust(_w[i]) for i, c in enumerate(r)).rstrip() for r in _rows)
@@ -53,7 +53,20 @@ def toc(pages):
     rows = "".join(f'<li><a href="#{a}">{t}</a><span class="dots"></span><span class="pg">{pages.get(a, "")}</span></li>' for a, t in TOC)
     return f'<ol class="toc">{rows}</ol>'
 
-def body(pages):
+HOWTO_TECH_PDF = "This is the user guide. The technical guide for developers and maintainers is the README in the project repository."
+HOWTO_TECH_WEB = 'This is the user guide. The technical guide for developers and maintainers is the <a href="https://github.com/AbbasCherri/hidden-costs-figures#readme">README on GitHub</a>.'
+def howto(web=False):
+    tech = "<li>" + (HOWTO_TECH_WEB if web else HOWTO_TECH_PDF) + "</li>"
+    return f'''    <ul class="plainlist">
+      <li>Work through Steps 1 to 7 in order the first time. After that, jump straight to the step you need.</li>
+      <li>Orange numbered boxes on a screenshot match the numbered list beside or under it.</li>
+      <li>Tip and Note boxes are short asides. Watch out boxes flag common mistakes.</li>
+      {tech}
+      <li>The charts in the ten chart types section use the sample tables that come built into the app. The Graph_Maker pictures and the pasted and uploaded workbook pictures come from the real study workbook. The scatter chart and the colour, pattern and warning demonstrations use made-up demonstration numbers, because the workbook's current table has no scatter data or multiple groups. They show how the tool behaves, not study results.</li>
+    </ul>'''
+
+def parts(pages, web=False):
+    """The guide as a list of HTML sections: cover, contents, then the content itself."""
     n_fig[0] = 0
     P = []
     # ---------------- cover
@@ -62,19 +75,13 @@ def body(pages):
       <h1 class="title">User guide</h1>
       <p class="sub">Step by step: how to turn a Graph_Maker table from the Hidden Costs workbook into a journal-ready figure, from copying the cells to saving a 300 dpi PNG or an SVG.</p>
       <div class="coverimg">{img("01_cover", "shot")}</div>
-      <p class="live">Open the tool: <b>abbascherri.github.io/hidden-costs-figures</b></p>
+      <p class="live">Open the tool: <b>abbascherri.github.io/hidden-costs-figures</b><br>Read this guide online: <b>abbascherri.github.io/hidden-costs-figures/guide/</b></p>
       <p class="small">Every picture in this guide is a screenshot of the running app, captured by a script. The orange numbered boxes were added by the same script.</p>
     </section>''')
     # ---------------- contents + how to read
     P.append(f'''<section class="pb"><h1 class="plain">Contents</h1>{toc(pages)}
     <h2>How to read this guide</h2>
-    <ul class="plainlist">
-      <li>Work through Steps 1 to 7 in order the first time. After that, jump straight to the step you need.</li>
-      <li>Orange numbered boxes on a screenshot match the numbered list beside or under it.</li>
-      <li>Tip and Note boxes are short asides. Watch out boxes flag common mistakes.</li>
-      <li>This is the user guide. The technical guide for developers and maintainers is the README in the project repository.</li>
-      <li>The charts in the chart-type pages use the sample tables that come built into the app. The Graph_Maker pictures and the pasted and uploaded workbook pictures come from the real study workbook. The scatter chart and the colour, pattern and warning demonstrations use made-up demonstration numbers, because the workbook's current table has no scatter data or multiple groups. They show how the tool behaves, not study results.</li>
-    </ul></section>''')
+    {howto()}</section>''')
     # ---------------- what it does
     P.append(f'''<section class="pb">{h1("What Figure Studio does", "what")}
     <p>Figure Studio is a web page. You give it a table from the Graph_Maker sheet and it draws a figure sized for a journal column. You then change the style, colours, wording and size, and download the result.</p>
@@ -155,7 +162,7 @@ def body(pages):
     </ol>
     {side("04_pastebox_open", "The Data card with the paste box section open.", ["The text area for pasted cells.", "Use pasted cells loads whatever is in the text area.", "The example list: choose a chart type to load a sample table (Method D)."], w="61mm")}</div>
         <h2>Method D. Try a built-in example</h2>
-    <p>In the same section, the list called <b>Try a table from the workbook</b> loads a sample table for any chart type except scatter. Choose one to see what that chart looks like before you copy real data. The chart pages near the end of this guide were all made this way.</p>
+    <p>In the same section, the list called <b>Try a table from the workbook</b> loads a sample table for any chart type except scatter. Choose one to see what that chart looks like before you copy real data. The ten chart types near the end of this guide were all made this way.</p>
     <h2>If something goes wrong</h2>
     <p>When the app cannot use what you gave it, a red message appears in the Data card and the previous figure stays on screen. Nothing is lost.</p>
     {side("06_error_small", "The message after pasting a plain sentence instead of a table.", ["The red message says what is missing. Here it asks for the header row or the whole Graph_Maker sheet. The tag below still shows the earlier, valid table. The most common cause is copying only the data rows and leaving out the header row. Copy again and include the first line."], w="61mm")}
@@ -301,7 +308,10 @@ def body(pages):
     {side("18_warn_line", "The warning line under the preview, shown here for a demonstration table with seven groups.", ["The warning. It says how many groups the table has and suggests filtering in Graph_Maker."], w="110mm")}
     {tip("Filter or merge groups in Graph_Maker rather than relying on readers to tell seven colours apart.")}
     </section>''')
-    return "\n".join(P)
+    return P
+
+def body(pages):
+    return "\n".join(parts(pages))
 
 CSS = f'''
 @page {{ size: A4; margin: 16mm 16mm 18mm 16mm; }}
@@ -380,10 +390,11 @@ def doc(pages):
     return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Figure Studio user guide</title><style>{CSS}</style></head><body>{body(pages)}</body></html>'
 
 def render(pages, out):
-    open("guide.html", "w").write(doc(pages))
+    os.makedirs(os.path.join(D, "build"), exist_ok=True)
+    open(os.path.join(D, "build", "guide.html"), "w").write(doc(pages))
     with sync_playwright() as p:
         b = p.chromium.launch(channel="chrome"); pg = b.new_page()
-        pg.goto(f"file://{D}/guide.html"); pg.wait_for_timeout(1500)
+        pg.goto(f"file://{D}/build/guide.html"); pg.wait_for_timeout(1500)
         pg.pdf(path=out, format="A4", print_background=True, prefer_css_page_size=True, display_header_footer=True,
                header_template="<span></span>",
                footer_template='<div style="width:100%;font-size:8px;color:#5b6672;padding:0 16mm;display:flex;justify-content:space-between;font-family:sans-serif"><span>Figure Studio user guide</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>',
@@ -402,6 +413,6 @@ def find_pages(pdf):
     return res, n
 
 if __name__ == "__main__":
-    out = "Figure_Studio_Guide.pdf"
-    render({}, "pass1.pdf"); pages, n = find_pages("pass1.pdf"); print("pass1 pages", n, pages)
+    out = os.path.join(D, "..", "Figure_Studio_Guide.pdf"); tmp = os.path.join(D, "build", "pass1.pdf")
+    render({}, tmp); pages, n = find_pages(tmp); print("pass1 pages", n, pages)
     render(pages, out); pages2, n2 = find_pages(out); print("final pages", n2, pages2, "stable:", pages == pages2)
