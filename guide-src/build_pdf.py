@@ -91,12 +91,12 @@ def body(pages):
     # ---------------- tour
     P.append(f'''<section class="pb">{h1("A tour of the workspace", "tour")}
     <p>The window has two parts. The control panel runs down the left. The figure preview sits on the right and redraws every time you change a control.</p>
-    {figure("01_overview", "The workspace with the example table loaded. The numbers match the list below.", w="134mm", cls="center")}
+    {figure("01_overview", "The workspace with the example table loaded. The numbers match the list below.", w="122mm", cls="center")}
     {legend(["<b>Data</b>: where you paste or load a table, and where errors appear.",
       "<b>Style</b>: the ways this chart type can be drawn. The list changes with the chart type.",
       "<b>Options</b>: colour palette, one colour or distinct colours, and switches that belong to the chart.",
       "<b>Text</b>: title, axis labels and footnote, all editable.",
-      "<b>Size</b>: single, 1.5 or double column width.",
+      "<b>Size</b>: single, 1.5 or double column width, plus a link that clears saved preferences.",
       "<b>Export bar</b>: Download PNG, SVG and Copy. It stays at the bottom of the panel while the cards scroll.",
       "<b>Preview</b>: the figure exactly as it will be exported.",
       "<b>Size readout</b>: the width in inches and the pixel size of the exported PNG."], "cols2")}
@@ -199,21 +199,18 @@ def body(pages):
     # ---------------- step 6
     P.append(f'''<section class="pb">{step(6, "Pick a size", "s6")}
     <p>Journals publish figures at fixed widths. Choose the width that matches the column you are writing for, so the text keeps its intended size.</p>
-    {side("13_size_card", "The Size card.", ["Single column, 1.5 column or double column. The selected one is highlighted."])}
+    {side("13_size_card", "The Size card.", ["Single column, 1.5 column or double column. The selected one is highlighted.", "The note that your choices are remembered.", "Reset saved preferences. It clears everything the app saved on this device."])}
     <table class="tbl"><tr><th>Choice</th><th>Width</th><th>Exported PNG at 300 dpi</th></tr>
       <tr><td>Single column</td><td>3.5 in</td><td>1050 px wide</td></tr>
-      <tr><td>1.5 column</td><td>5.2 in</td><td>1560 px wide</td></tr>
-      <tr><td>Double column</td><td>7.2 in</td><td>2160 px wide</td></tr></table>
+      <tr><td>1.5 column</td><td>5.2 in</td><td>1559 px wide</td></tr>
+      <tr><td>Double column</td><td>7.2 in</td><td>2159 px wide</td></tr></table>
     <p>The height follows the content. The exact pixel size of the current figure is printed under the preview.</p>
-    <h2>The same chart at three widths</h2>
-    <p>These three captures use the same scale, so you can see the real size difference. Narrower figures wrap or rotate long labels to fit, as the single-column version shows.</p>
-    {figure("size_single", "Single column.", w="92mm")}
-    {figure("size_mid", "1.5 column.", w="136mm")}
+    <p>Figure Studio remembers your style, palette, colours, patterns, title switch and size on this device, so the next visit starts where you left off. It never saves your data or your typed text. If you want the defaults back, click Reset saved preferences under the size buttons.</p>
     </section>''')
-    P.append(f'''<section>
-    {figure("size_double", "Double column.", w="174mm")}
-    <p>Under the preview the app prints a line like this one. It tells you the size you will get before you download.</p>
-    {figure("size_mid_meta", "The size readout for 1.5 column.", w="80mm")}
+    P.append(f'''<section class="pb"><h2 style="margin-top:0">The same chart at three widths</h2>
+    <p>These three captures use the same scale, so you can see the real size difference. They are drawn smaller than life to fit the page. Narrower figures wrap or rotate long labels to fit, as the single-column version shows.</p>
+    <div class="rowfig">{figure("size_single", "Single column.", w="66mm")}{figure("size_mid", "1.5 column.", w="98mm")}</div>
+    {figure("size_double", "Double column.", w="125mm")}
     </section>''')
     # ---------------- step 7
     P.append(f'''<section class="pb">{step(7, "Export the figure", "s7")}
@@ -281,7 +278,7 @@ def body(pages):
     <ul class="plainlist">
       <li>Ctrl+V works anywhere on the page except inside a text box.</li>
       <li>Esc closes the image window.</li>
-      <li>Your style and palette choices stay while the page is open. Text edits reset when you load a new table, and reloading the page starts again from the built-in example.</li>
+      <li>Your style, palette, colours, patterns, title switch and size are remembered on this device, even after you close the page. Your data and typed text are not: they reset when you load a new table, and reloading the page starts again from the built-in example.</li>
       <li>Colours repeat after six groups. If a warning says so, filter the groups in Graph_Maker.</li>
     </ul></section>''')
     # ---------------- troubleshooting
@@ -295,6 +292,7 @@ def body(pages):
     <tr><td>This chart could not be drawn</td><td>The table does not have what that style needs. Try another style, or copy the table again.</td></tr>
     <tr><td>The text looks wrong after changing options</td><td>Click Reset text to the sheet's suggestions.</td></tr>
     <tr><td>Nothing happens on Download</td><td>Allow downloads for the site. Or use the image window and right-click to save.</td></tr>
+    <tr><td>The page opens with settings I did not choose</td><td>Another person may have used this browser, or you changed them earlier. Click Reset saved preferences in the Size card.</td></tr>
     <tr><td>Labels are tilted or crowded</td><td>Choose a wider Size, or a horizontal style such as Horizontal bars or Forest.</td></tr>
     </table>
     <h2>A warning about many groups</h2>
@@ -347,6 +345,7 @@ ol.check li {{ margin-bottom:2mm; padding-left:1mm; }}
 .sidetxt {{ flex:1; padding-top:2mm; }}
 ol.legend {{ list-style:none; padding:0; margin:0 0 3mm; }}
 div.keep {{ break-inside:avoid; }}
+.rowfig {{ display:flex; gap:6mm; align-items:flex-end; }}
 ol.legend.cols2 {{ columns:2; column-gap:8mm; }}
 ol.legend li {{ display:flex; gap:3mm; margin-bottom:2.6mm; align-items:flex-start; break-inside:avoid; }}
 ol.legend .b {{ flex:none; width:6.6mm; height:6.6mm; border-radius:50%; background:var(--orange); color:#fff; font-weight:700; font-size:9.5pt; display:flex; align-items:center; justify-content:center; margin-top:.3mm; }}

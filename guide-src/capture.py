@@ -35,7 +35,7 @@ def union(pg, sels, pad=12):
     L,T,R,B = pad if isinstance(pad,tuple) else (pad,pad,pad,pad)
     r = pg.evaluate("""(a)=>{let l=1e9,t=1e9,r=-1e9,b=-1e9;for(const s of a){const e=document.querySelector(s).getBoundingClientRect();
       l=Math.min(l,e.left);t=Math.min(t,e.top);r=Math.max(r,e.right);b=Math.max(b,e.bottom)}return [l,t,r,b]}""", sels)
-    x0=max(0,r[0]-L); y0=max(0,r[1]-T); x1=min(1440,r[2]+R); y1=min(1500,r[3]+B)
+    x0=max(0,r[0]-L); y0=max(0,r[1]-T); x1=min(1440,r[2]+R); y1=min(1600,r[3]+B)
     return {"x":x0,"y":y0,"width":x1-x0,"height":y1-y0}
 
 def shot(pg, name, sels=None, pad=12, ann=None, full=False, apad=(10,10,54,10)):
@@ -96,7 +96,7 @@ def scatter_table(n=60, seed=5):
 
 with sync_playwright() as p:
     b = p.chromium.launch(channel="chrome")
-    ctx = b.new_context(viewport={'width':1440,'height':1500}, device_scale_factor=2, accept_downloads=True)
+    ctx = b.new_context(viewport={'width':1440,'height':1600}, device_scale_factor=2, accept_downloads=True)
     pg = ctx.new_page()
     pg.goto(URL); pg.wait_for_timeout(1500)
 
@@ -192,7 +192,7 @@ with sync_playwright() as p:
     if pg.evaluate("document.querySelector('#title-on').checked"): pg.evaluate("document.querySelector('#title-on').click()")
 
     # 13 size card + same chart at three widths
-    shot(pg, "13_size_card", ['.panel .card:nth-of-type(5)'], ann=[dict(sel="#size", n=1, pad=3)], apad=(10,10,54,-8))
+    shot(pg, "13_size_card", ['.panel .card:nth-of-type(5)'], ann=[dict(sel="#size", n=1, pad=3), dict(sel=".panel .card:nth-of-type(5) p.muted", n=2, pad=3), dict(sel="#reset-prefs", n=3, pad=3)], apad=(10,10,54,-8))
     for lab, key in [("Single column","single"),("1.5 column","mid"),("Double column","double")]:
         size(pg, lab); fig(pg, f"size_{key}")
         shot(pg, f"size_{key}_meta", ['.meta'], pad=4)
