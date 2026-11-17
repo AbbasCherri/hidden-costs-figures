@@ -258,7 +258,7 @@ def parts(pages, web=False):
      ("gal_likert", "Item battery", "Likert scale items", "item, n, mean_code, then one column per answer category", "Diverging stacked bars, 100% stacked bars, Ranked means, Heatmap"),
      ("gal_corr", "Correlation heatmap", "All Spearman pairs", "variable_a, variable_b, n, rho, p_value, p_bonferroni, direction, strength", "Triangle with coefficients, Full matrix, Circle matrix, Strongest pairs (ranked)")]
     P.append(f'''<section class="pb">{h1("The ten chart types", "gal")}
-    <p>The app recognises these ten tables by their headers. For each one you can see the first header names the app looks for, the styles on offer, and a sample figure in its default style.</p>
+    <p>The app recognises these ten tables by their column headers. The table below says what each type shows and which styles it offers. After it, every type has its column names and a sample figure in its default style.</p>
     <table class="tbl small"><tr><th>Chart type</th><th>Shows</th><th>Styles</th></tr>
     {"".join(f"<tr><td>{n}</td><td>{s}</td><td>{st}</td></tr>" for _, n, s, _, st in gal)}</table></section>''')
     byname = {g[0]: g for g in gal}
