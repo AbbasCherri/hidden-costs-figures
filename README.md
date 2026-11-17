@@ -101,8 +101,8 @@ Three journal column widths. Height follows the content.
 | Option | Width | PNG at 300 dpi |
 | --- | --- | --- |
 | Single column | 3.5 in | 1050 px wide |
-| 1.5 column | 5.2 in | 1560 px wide |
-| Double column | 7.2 in | 2160 px wide |
+| 1.5 column | 5.2 in | 1559 px wide |
+| Double column | 7.2 in | 2159 px wide |
 
 The exact export dimensions are shown under the figure.
 
