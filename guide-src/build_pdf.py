@@ -59,8 +59,8 @@ def body(pages):
     # ---------------- cover
     P.append(f'''<section class="cover">
       <div class="brand"><svg viewBox="0 0 28 28" width="46" height="46"><rect x="3" y="15" width="5" height="10" rx="1.5" fill="#2a78d6"/><rect x="11.5" y="8" width="5" height="17" rx="1.5" fill="#2a78d6"/><rect x="20" y="3" width="5" height="22" rx="1.5" fill="#0b2c57"/></svg><span>Figure Studio</span></div>
-      <h1 class="title">Step-by-step guide</h1>
-      <p class="sub">How to turn a Graph_Maker table from the Hidden Costs workbook into a journal-ready figure, from copying the cells to saving a 300 dpi PNG or an SVG.</p>
+      <h1 class="title">User guide</h1>
+      <p class="sub">Step by step: how to turn a Graph_Maker table from the Hidden Costs workbook into a journal-ready figure, from copying the cells to saving a 300 dpi PNG or an SVG.</p>
       <div class="coverimg">{img("01_cover", "shot")}</div>
       <p class="live">Open the tool: <b>abbascherri.github.io/hidden-costs-figures</b></p>
       <p class="small">Every picture in this guide is a screenshot of the running app, captured by a script. The orange numbered boxes were added by the same script.</p>
@@ -72,6 +72,7 @@ def body(pages):
       <li>Work through Steps 1 to 7 in order the first time. After that, jump straight to the step you need.</li>
       <li>Orange numbered boxes on a screenshot match the numbered list beside or under it.</li>
       <li>Tip and Note boxes are short asides. Watch out boxes flag common mistakes.</li>
+      <li>This is the user guide. The technical guide for developers and maintainers is the README in the project repository.</li>
       <li>The charts in the chart-type pages use the sample tables that come built into the app. The Graph_Maker pictures and the pasted and uploaded workbook pictures come from the real study workbook. The scatter chart and the colour, pattern and warning demonstrations use made-up demonstration numbers, because the workbook's current table has no scatter data or multiple groups. They show how the tool behaves, not study results.</li>
     </ul></section>''')
     # ---------------- what it does
@@ -376,7 +377,7 @@ ol.five span {{ font-size:8.8pt; color:var(--muted); }}
 '''
 
 def doc(pages):
-    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Figure Studio step-by-step guide</title><style>{CSS}</style></head><body>{body(pages)}</body></html>'
+    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Figure Studio user guide</title><style>{CSS}</style></head><body>{body(pages)}</body></html>'
 
 def render(pages, out):
     open("guide.html", "w").write(doc(pages))
@@ -385,7 +386,7 @@ def render(pages, out):
         pg.goto(f"file://{D}/guide.html"); pg.wait_for_timeout(1500)
         pg.pdf(path=out, format="A4", print_background=True, prefer_css_page_size=True, display_header_footer=True,
                header_template="<span></span>",
-               footer_template='<div style="width:100%;font-size:8px;color:#5b6672;padding:0 16mm;display:flex;justify-content:space-between;font-family:sans-serif"><span>Figure Studio step-by-step guide</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>',
+               footer_template='<div style="width:100%;font-size:8px;color:#5b6672;padding:0 16mm;display:flex;justify-content:space-between;font-family:sans-serif"><span>Figure Studio user guide</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>',
                margin={"top": "16mm", "bottom": "18mm", "left": "16mm", "right": "16mm"})
         b.close()
 
