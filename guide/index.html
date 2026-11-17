@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Figure Studio user guide</title>
+<meta name="description" content="Step-by-step user guide for Figure Studio: copy a table from Graph_Maker, load it, style it and export a journal-ready figure.">
+<meta name="theme-color" content="#0b2c57">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect x='3' y='15' width='5' height='10' rx='1.5' fill='%232a78d6'/%3E%3Crect x='11.5' y='8' width='5' height='17' rx='1.5' fill='%232a78d6'/%3E%3Crect x='20' y='3' width='5' height='22' rx='1.5' fill='%230b2c57'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to the guide</a>
+<header class="topbar"><div class="in">
+  <a class="brand" href="#top"><svg viewBox="0 0 28 28" width="30" height="30" aria-hidden="true"><rect x="3" y="15" width="5" height="10" rx="1.5" fill="#2a78d6"/><rect x="11.5" y="8" width="5" height="17" rx="1.5" fill="#2a78d6"/><rect x="20" y="3" width="5" height="22" rx="1.5" fill="#0b2c57"/></svg><span>Figure Studio<small>User guide</small></span></a>
+  <a class="btn hide-sm" href="../Figure_Studio_Guide.pdf">Download PDF</a>
+  <a class="btn primary" href="../">Open Figure Studio</a>
+</div></header>
+<div class="layout" id="top">
+  <nav class="snav" aria-label="Guide contents"><h2>Contents</h2><ol><li><a href="#how">How to read this guide</a></li><li><a href="#what">What Figure Studio does</a></li><li><a href="#tour">A tour of the workspace</a></li><li><a href="#s1">Step 1. Copy the table from Graph_Maker</a></li><li><a href="#s2">Step 2. Load the table</a></li><li><a href="#s3">Step 3. Choose a chart style</a></li><li><a href="#s4">Step 4. Set colours and options</a></li><li><a href="#s5">Step 5. Edit the text</a></li><li><a href="#s6">Step 6. Pick a size</a></li><li><a href="#s7">Step 7. Export the figure</a></li><li><a href="#gal">The ten chart types</a></li><li><a href="#check">Quick checklist</a></li><li><a href="#trouble">Troubleshooting</a></li></ol></nav>
+  <main id="content">
+    <div class="hero">
+      <h1>Figure Studio user guide</h1>
+      <p class="lead">Step by step: how to turn a Graph_Maker table from the Hidden Costs workbook into a journal-ready figure, from copying the cells to saving a 300 dpi PNG or an SVG.</p>
+      <div class="actions">
+        <a class="btn primary" href="../">Open Figure Studio</a>
+        <a class="btn" href="../Figure_Studio_Guide.pdf">Download the PDF (4.6 MB)</a>
+      </div>
+      <details class="mnav"><summary>Contents</summary><ol><li><a href="#how">How to read this guide</a></li><li><a href="#what">What Figure Studio does</a></li><li><a href="#tour">A tour of the workspace</a></li><li><a href="#s1">Step 1. Copy the table from Graph_Maker</a></li><li><a href="#s2">Step 2. Load the table</a></li><li><a href="#s3">Step 3. Choose a chart style</a></li><li><a href="#s4">Step 4. Set colours and options</a></li><li><a href="#s5">Step 5. Edit the text</a></li><li><a href="#s6">Step 6. Pick a size</a></li><li><a href="#s7">Step 7. Export the figure</a></li><li><a href="#gal">The ten chart types</a></li><li><a href="#check">Quick checklist</a></li><li><a href="#trouble">Troubleshooting</a></li></ol></details>
+      <figure class="center"><a class="zoom" href="img/01_cover.webp"><img class="shot" src="img/01_cover.webp" alt="Figure Studio with the example table loaded: controls on the left, the figure on the right." width="1440" height="900"></a></figure>
+    </div>
+    <section class="intro" id="how"><h2 class="plain">How to read this guide</h2>
+        <ul class="plainlist">
+      <li>Work through Steps 1 to 7 in order the first time. After that, jump straight to the step you need.</li>
+      <li>Orange numbered boxes on a screenshot match the numbered list beside or under it.</li>
+      <li>Tip and Note boxes are short asides. Watch out boxes flag common mistakes.</li>
+      <li>This is the user guide. The technical guide for developers and maintainers is the <a href="https://github.com/AbbasCherri/hidden-costs-figures#readme">README on GitHub</a>.</li>
+      <li>The charts in the ten chart types section use the sample tables that come built into the app. The Graph_Maker pictures and the pasted and uploaded workbook pictures come from the real study workbook. The scatter chart and the colour, pattern and warning demonstrations use made-up demonstration numbers, because the workbook's current table has no scatter data or multiple groups. They show how the tool behaves, not study results.</li>
+    </ul>
+    </section>
+<section class="pb"><h2 id="what" class="plain">What Figure Studio does</h2>
+    <p>Figure Studio is a web page. You give it a table from the Graph_Maker sheet and it draws a figure sized for a journal column. You then change the style, colours, wording and size, and download the result.</p>
+    <p>It works out the chart type from the table's column headers, so you never have to say what kind of data it is.</p>
+    <h4>What you need</h4>
+    <ul class="plainlist">
+      <li>The Hidden Costs study workbook, open in OnlyOffice, Excel or Google Sheets, with a working Graph_Maker sheet.</li>
+      <li>A current desktop browser. The screenshots in this guide were captured in Chrome, so other browsers may look slightly different.</li>
+      <li>An internet connection for the first load, because the page fetches its font from Google Fonts. You also need it if you upload an <code>.xlsx</code> file, which loads a spreadsheet reader. Pasting cells or loading a CSV works without that reader.</li>
+    </ul>
+    <h4>The whole job in five moves</h4>
+    <ol class="five"><li><b>Copy</b><span>cells in Graph_Maker</span></li><li><b>Paste</b><span>with Ctrl+V on the page</span></li><li><b>Adjust</b><span>style, colours, text, size</span></li><li><b>Check</b><span>the preview</span></li><li><b>Download</b><span>PNG or SVG</span></li></ol>
+    <div class="box note"><b>Note.</b> Nothing you load leaves your computer. The page reads and draws everything in your browser.</div>
+    </section>
+<section class="pb"><h2 id="tour" class="plain">A tour of the workspace</h2>
+    <p>The window has two parts. The control panel runs down the left. The figure preview sits on the right and redraws every time you change a control.</p>
+    <figure class="center"><a class="zoom" href="img/01_overview.webp" title="Open the full-size picture"><img class="shot" src="img/01_overview.webp" alt="The workspace with the example table loaded. The numbers match the list below." width="1440" height="1600" loading="lazy" decoding="async"></a><figcaption><b>Figure 1.</b> The workspace with the example table loaded. The numbers match the list below.</figcaption></figure>
+    <ol class="legend cols2"><li><span class="b">1</span><div><b>Data</b>: where you paste or load a table, and where errors appear.</div></li><li><span class="b">2</span><div><b>Style</b>: the ways this chart type can be drawn. The list changes with the chart type.</div></li><li><span class="b">3</span><div><b>Options</b>: colour palette, one colour or distinct colours, and switches that belong to the chart.</div></li><li><span class="b">4</span><div><b>Text</b>: title, axis labels and footnote, all editable.</div></li><li><span class="b">5</span><div><b>Size</b>: single, 1.5 or double column width, plus a link that clears saved preferences.</div></li><li><span class="b">6</span><div><b>Export bar</b>: Download PNG, SVG and Copy. It stays at the bottom of the panel while the cards scroll.</div></li><li><span class="b">7</span><div><b>Preview</b>: the figure exactly as it will be exported.</div></li><li><span class="b">8</span><div><b>Size readout</b>: the width in inches and the pixel size of the exported PNG.</div></li></ol>
+    <div class="box tip"><b>Tip.</b> When the app opens it already shows an example, so you can try every control before loading your own data.</div>
+    </section>
+<section class="pb"><div class="stephead" id="s1"><span class="num">1</span><h2>Copy the table from Graph_Maker</h2></div>
+    <p>Figure Studio does not read the workbook's raw answers. It reads the finished table that the Graph_Maker sheet builds for the chart you choose. Your first job is to set up that chart in the workbook and copy the result.</p>
+    <figure class="center"><a class="zoom" href="img/oo_graphmaker_annotated.webp" title="Open the full-size picture"><img class="shot" src="img/oo_graphmaker_annotated.webp" alt="The Graph_Maker sheet of the study workbook in OnlyOffice Desktop Editors. It is set to Mean by group, X = Q10 Commute time, Y = PSS-10 total, and the table is selected from its header row down." width="800" height="500" loading="lazy" decoding="async"></a><figcaption><b>Figure 2.</b> The Graph_Maker sheet of the study workbook in OnlyOffice Desktop Editors. It is set to Mean by group, X = Q10 Commute time, Y = PSS-10 total, and the table is selected from its header row down.</figcaption></figure>
+    <ol class="legend "><li><span class="b">1</span><div>The Graph_Maker tab. Click it at the bottom of the window.</div></li><li><span class="b">2</span><div>What to plot. The yellow cells are the inputs. Click one and pick from its dropdown list. Bin width takes a whole number. Grey rows (here Item set and Show values as) do not apply to this graph type.</div></li><li><span class="b">3</span><div>What the sheet suggests. A chart description, a title, axis labels, a legend text and a footnote, plus a Status line. Wait for the green tick before you copy.</div></li><li><span class="b">4</span><div>The chart-ready table. This is what Figure Studio reads. Its column headers tell the app which chart type it is. Here it is selected from the header row (row 18) to the last data row (row 23).</div></li></ol>
+    <ol class="steps">
+      <li><span class="n">1a</span><div>Open the <b>Graph_Maker</b> sheet in the study workbook.</div></li>
+      <li><span class="n">1b</span><div>Choose the <b>Graph type</b> first, then X, Y, group and filter. Check that the Status line shows a green tick and the row and column counts you expect.</div></li>
+      <li><span class="n">1c</span><div>Click any cell, press <kbd>Ctrl</kbd>+<kbd>A</kbd>, then <kbd>Ctrl</kbd>+<kbd>C</kbd>. On a Mac use <kbd>Cmd</kbd>. That copies the whole sheet. To copy only the table, select it as in box 4 instead.</div></li>
+    </ol>
+    <div class="box tip"><b>Tip.</b> You can copy less. Selecting only the table (box 4), starting at its header row, works just as well. Copying the whole sheet has one advantage: the app also picks up the suggested title, axis labels and footnote from box 3. Step 2 shows the difference.</div>
+    <h4>What the copied table looks like</h4>
+    <p>Pasted cells arrive as plain text, one row per line, with a tab between cells (lined up here so it is easier to read). This is the table from box 4, exactly as the app receives it. The first line is the header row. The headers are how the app recognises the chart type.</p>
+    <pre class="code">x_category            group_category   x_code  group_code  n   mean    sd     se     ci95_low  ci95_high
+Less than 15 minutes  All respondents  0                   28  22.429  6.828  1.29   19.781    25.076
+15–30 minutes         All respondents  1                   16  23.375  5.83   1.457  20.269    26.481
+31–60 minutes         All respondents  2                   16  22.875  5.377  1.344  20.01     25.74
+61–90 minutes         All respondents  3                   9   22.444  6.579  2.193  17.388    27.501
+More than 90 minutes  All respondents  4                   6   23.667  3.204  1.308  20.304    27.029</pre>
+    <div class="box warn"><b>Watch out.</b> If Graph_Maker shows an empty table or an error in the Status line, the app cannot help yet. Open the workbook in OnlyOffice or Excel, let it recalculate, save it, then copy again.</div>
+    <p>The app prints a short version of these steps in its Data card. Click <b>How to get the data</b> to open it.</p>
+    </section>
+<section class="pb"><div class="stephead" id="s2"><span class="num">2</span><h2>Load the table</h2></div>
+    <p>There are four ways to get a table into the app. The first is the one you will use most of the time.</p>
+    <h3>Method A. Paste with Ctrl+V (fastest)</h3>
+    <ol class="steps">
+      <li><span class="n">1</span><div>Click an empty part of the Figure Studio page, away from any text box.</div></li>
+      <li><span class="n">2</span><div>Press <kbd>Ctrl</kbd>+<kbd>V</kbd> (<kbd>Cmd</kbd>+<kbd>V</kbd> on a Mac).</div></li>
+      <li><span class="n">3</span><div>The figure redraws at once. The Data card shows a blue tag with the detected chart type, the number of rows, and the word <i>pasted table</i>.</div></li>
+    </ol>
+    <div class="side"><figure><a class="zoom" href="img/r_paste_card.webp" title="Open the full-size picture"><img class="shot" src="img/r_paste_card.webp" alt="After pasting the whole Graph_Maker sheet from Step 1." width="399" height="297" loading="lazy" decoding="async"></a><figcaption><b>Figure 3.</b> After pasting the whole Graph_Maker sheet from Step 1.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>Detected chart type (Mean by group), row count (5 rows, one per commute category) and where the data came from.</div></li></ol></div></div>
+    <div class="side"><figure><a class="zoom" href="img/r_paste_text.webp" title="Open the full-size picture"><img class="shot" src="img/r_paste_text.webp" alt="The Text card after the same paste. The app filled it from the sheet." width="399" height="423" loading="lazy" decoding="async"></a><figcaption><b>Figure 4.</b> The Text card after the same paste. The app filled it from the sheet.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>Title, from the sheet's Suggested title.</div></li><li><span class="b">2</span><div>X axis label, from the sheet's X axis.</div></li><li><span class="b">3</span><div>Y axis label, from the sheet's Y axis.</div></li><li><span class="b">4</span><div>Footnote, from the sheet's Footnote.</div></li></ol></div></div>
+        </section>
+<section>
+    <div class="keep"><h3>Method B. Drop or choose a file</h3>
+    <p>Use this when you have a saved CSV, TSV, text file or the workbook itself. Accepted types are <code>.xlsx</code>, <code>.xlsm</code>, <code>.csv</code>, <code>.tsv</code> and <code>.txt</code>.</p>
+    <div class="side"><figure><a class="zoom" href="img/02_data_card.webp" title="Open the full-size picture"><img class="shot" src="img/02_data_card.webp" alt="The Data card in its resting state." width="399" height="297" loading="lazy" decoding="async"></a><figcaption><b>Figure 5.</b> The Data card in its resting state.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>The drop zone. Drag a file anywhere on the page and drop it. While you drag, the whole window dims and says "Drop the workbook to load it".</div></li><li><span class="b">2</span><div>The Choose file button opens your computer's file picker.</div></li><li><span class="b">3</span><div>The loaded tag. It tells you what is currently on screen.</div></li><li><span class="b">4</span><div>How to get the data: opens the three-line recipe from Step 1.</div></li><li><span class="b">5</span><div>Paste box and examples: opens the paste box and the example list (Methods C and D).</div></li></ol></div></div>
+        <div class="side"><figure><a class="zoom" href="img/r_upload_card.webp" title="Open the full-size picture"><img class="shot" src="img/r_upload_card.webp" alt="After choosing the study workbook with Choose file." width="399" height="337" loading="lazy" decoding="async"></a><figcaption><b>Figure 6.</b> After choosing the study workbook with Choose file.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>The tag shows the chart type and the workbook file name.</div></li></ol></div></div>
+    <ul class="plainlist">
+      <li>For a workbook, the app opens the sheet named Graph_Maker and reads its table, as in the figure below. If the table is blank, recalculate and save the workbook in OnlyOffice or Excel first.</li>
+      <li>Reading an <code>.xlsx</code> file needs an internet connection the first time, because the page downloads its spreadsheet reader.</li>
+    </ul></div>
+    </section>
+<section>
+    <div class="keep"><h3>Method C. The paste box</h3>
+    <p>If Ctrl+V on the page does nothing in your browser, paste into a box instead.</p>
+    <ol class="steps">
+      <li><span class="n">1</span><div>In the Data card, click <b>Paste box and examples</b> to open it.</div></li>
+      <li><span class="n">2</span><div>Click inside the text area and press Ctrl+V.</div></li>
+      <li><span class="n">3</span><div>Click <b>Use pasted cells</b>.</div></li>
+    </ol>
+    <div class="side"><figure><a class="zoom" href="img/04_pastebox_open.webp" title="Open the full-size picture"><img class="shot" src="img/04_pastebox_open.webp" alt="The Data card with the paste box section open." width="399" height="480" loading="lazy" decoding="async"></a><figcaption><b>Figure 7.</b> The Data card with the paste box section open.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>The text area for pasted cells.</div></li><li><span class="b">2</span><div>Use pasted cells loads whatever is in the text area.</div></li><li><span class="b">3</span><div>The example list: choose a chart type to load a sample table (Method D).</div></li></ol></div></div></div>
+        <h3>Method D. Try a built-in example</h3>
+    <p>In the same section, the list called <b>Try a table from the workbook</b> loads a sample table for any chart type except scatter. Choose one to see what that chart looks like before you copy real data. The ten chart types near the end of this guide were all made this way.</p>
+    <h3>If something goes wrong</h3>
+    <p>When the app cannot use what you gave it, a red message appears in the Data card and the previous figure stays on screen. Nothing is lost.</p>
+    <div class="side"><figure><a class="zoom" href="img/06_error_small.webp" title="Open the full-size picture"><img class="shot" src="img/06_error_small.webp" alt="The message after pasting a plain sentence instead of a table." width="399" height="126" loading="lazy" decoding="async"></a><figcaption><b>Figure 8.</b> The message after pasting a plain sentence instead of a table.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>The red message says what is missing. Here it asks for the header row or the whole Graph_Maker sheet. The tag below still shows the earlier, valid table. The most common cause is copying only the data rows and leaving out the header row. Copy again and include the first line.</div></li></ol></div></div>
+        </section>
+<section class="pb"><div class="stephead" id="s3"><span class="num">3</span><h2>Choose a chart style</h2></div>
+    <p>Each chart type can be drawn in several ways. Pick one in the Style card. The preview changes immediately.</p>
+    <div class="side"><figure><a class="zoom" href="img/09_style_card.webp" title="Open the full-size picture"><img class="shot" src="img/09_style_card.webp" alt="The Style card for a Mean by group table." width="399" height="250" loading="lazy" decoding="async"></a><figcaption><b>Figure 9.</b> The Style card for a Mean by group table.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>The list of styles for this chart type. The filled circle marks the current style. Click any row to switch.</div></li></ol></div></div>
+    <p>Here is the same table in all four of its styles. Only the style changed. Forest suits many categories with long names. Dots and lines suit a scale that does not start at zero. Every chart type has its own styles, listed in The ten chart types.</p>
+    <div class="grid c2"><figure><a class="zoom" href="img/style_meanci_bars.webp" title="Open the full-size picture"><img class="shot" src="img/style_meanci_bars.webp" alt="Bars with 95% CI." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 10.</b> Bars with 95% CI.</figcaption></figure><figure><a class="zoom" href="img/style_meanci_dots.webp" title="Open the full-size picture"><img class="shot" src="img/style_meanci_dots.webp" alt="Dots with 95% CI." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 11.</b> Dots with 95% CI.</figcaption></figure><figure><a class="zoom" href="img/style_meanci_line.webp" title="Open the full-size picture"><img class="shot" src="img/style_meanci_line.webp" alt="Line with 95% CI." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 12.</b> Line with 95% CI.</figcaption></figure><figure><a class="zoom" href="img/style_meanci_forest.webp" title="Open the full-size picture"><img class="shot" src="img/style_meanci_forest.webp" alt="Forest (horizontal)." width="798" height="421" loading="lazy" decoding="async"></a><figcaption><b>Figure 13.</b> Forest (horizontal).</figcaption></figure></div>
+</section>
+<section class="pb"><div class="stephead" id="s4"><span class="num">4</span><h2>Set colours and options</h2></div>
+    <p>The Options card holds everything that changes the look of the data marks. The controls shown depend on the chart. This example uses a grouped bar chart with three groups called Rent, Own and Family, using demonstration numbers.</p>
+    <div class="side"><figure><a class="zoom" href="img/10_options_card.webp" title="Open the full-size picture"><img class="shot" src="img/10_options_card.webp" alt="The Options card for a grouped chart." width="399" height="344" loading="lazy" decoding="async"></a><figcaption><b>Figure 14.</b> The Options card for a grouped chart.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>Colour palette: a list of eleven palettes.</div></li><li><span class="b">2</span><div>Swatches: the colours of the chosen palette, in the order groups will use them. A one-line note below says whether the palette is safe for colour-blind readers.</div></li><li><span class="b">3</span><div>Chart-specific controls. Here: how values are counted and whether the numbers are printed on the bars.</div></li></ol></div></div>
+    <h3>Compare palettes</h3>
+    <p>Choose a palette from the list. Four of them, plus greyscale, on the same table:</p>
+    <div class="grid c2"><figure><a class="zoom" href="img/pal_journal.webp" title="Open the full-size picture"><img class="shot" src="img/pal_journal.webp" alt="Journal muted (the default)." width="798" height="536" loading="lazy" decoding="async"></a><figcaption><b>Figure 15.</b> Journal muted (the default).</figcaption></figure><figure><a class="zoom" href="img/pal_okabe.webp" title="Open the full-size picture"><img class="shot" src="img/pal_okabe.webp" alt="Okabe-Ito, designed for colour-vision deficiency." width="798" height="536" loading="lazy" decoding="async"></a><figcaption><b>Figure 16.</b> Okabe-Ito, designed for colour-vision deficiency.</figcaption></figure><figure><a class="zoom" href="img/pal_tolbright.webp" title="Open the full-size picture"><img class="shot" src="img/pal_tolbright.webp" alt="Paul Tol Bright." width="798" height="536" loading="lazy" decoding="async"></a><figcaption><b>Figure 17.</b> Paul Tol Bright.</figcaption></figure><figure><a class="zoom" href="img/pal_lancet.webp" title="Open the full-size picture"><img class="shot" src="img/pal_lancet.webp" alt="The Lancet palette." width="798" height="536" loading="lazy" decoding="async"></a><figcaption><b>Figure 18.</b> The Lancet palette.</figcaption></figure><figure><a class="zoom" href="img/pal_grey.webp" title="Open the full-size picture"><img class="shot" src="img/pal_grey.webp" alt="Greyscale, for black-and-white print." width="798" height="536" loading="lazy" decoding="async"></a><figcaption><b>Figure 19.</b> Greyscale, for black-and-white print.</figcaption></figure></div>
+    <div class="box tip"><b>Tip.</b> If readers may be colour-blind, choose Okabe-Ito or one of the Paul Tol palettes. The note under the swatches says which palettes are colour-blind safe.</div>
+    </section>
+<section>
+    <h3>One colour or distinct colours</h3>
+    <p>Charts with a single series have a Colours switch. <b>One colour</b> draws every bar in the first palette colour. <b>Distinct colours</b> gives each category its own colour.</p>
+    <div class="side"><figure><a class="zoom" href="img/18_hue_row.webp" title="Open the full-size picture"><img class="shot" src="img/18_hue_row.webp" alt="The Colours switch." width="399" height="69" loading="lazy" decoding="async"></a><figcaption><b>Figure 20.</b> The Colours switch.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>One colour or Distinct colours. It appears only for charts where it makes sense.</div></li></ol></div></div>
+    <div class="grid c2"><figure><a class="zoom" href="img/hue_one.webp" title="Open the full-size picture"><img class="shot" src="img/hue_one.webp" alt="One colour." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 21.</b> One colour.</figcaption></figure><figure><a class="zoom" href="img/hue_distinct.webp" title="Open the full-size picture"><img class="shot" src="img/hue_distinct.webp" alt="Distinct colours." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 22.</b> Distinct colours.</figcaption></figure></div>
+    <h3>Patterns for greyscale print</h3>
+    <p>Some journals print in black and white. Choose the Greyscale palette, then turn on <b>Patterns for greyscale print</b>. Each group gets a hatch pattern, so groups still differ when colour is gone.</p>
+    <div class="side"><figure><a class="zoom" href="img/18_pat_row.webp" title="Open the full-size picture"><img class="shot" src="img/18_pat_row.webp" alt="The Patterns switch." width="399" height="35" loading="lazy" decoding="async"></a><figcaption><b>Figure 23.</b> The Patterns switch.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>Patterns for greyscale print. It only appears for charts that can use patterns.</div></li></ol></div></div>
+    <div class="grid c2"><figure><a class="zoom" href="img/grey_patterns_off.webp" title="Open the full-size picture"><img class="shot" src="img/grey_patterns_off.webp" alt="Greyscale without patterns: the second and third groups are hard to tell apart." width="798" height="536" loading="lazy" decoding="async"></a><figcaption><b>Figure 24.</b> Greyscale without patterns: the second and third groups are hard to tell apart.</figcaption></figure><figure><a class="zoom" href="img/grey_patterns_on.webp" title="Open the full-size picture"><img class="shot" src="img/grey_patterns_on.webp" alt="Greyscale with patterns: every group is distinct." width="798" height="536" loading="lazy" decoding="async"></a><figcaption><b>Figure 25.</b> Greyscale with patterns: every group is distinct.</figcaption></figure></div>
+    </section>
+<section class="pb"><div class="stephead" id="s5"><span class="num">5</span><h2>Edit the text</h2></div>
+    <p>The Text card controls the title, axis labels and footnote. They start from Graph_Maker's suggestions. Any field you type in becomes yours and the app stops overwriting it.</p>
+    <div class="side"><figure><a class="zoom" href="img/12_text_card.webp" title="Open the full-size picture"><img class="shot" src="img/12_text_card.webp" alt="The Text card." width="399" height="423" loading="lazy" decoding="async"></a><figcaption><b>Figure 26.</b> The Text card.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>Show title. Off by default, because most journals put the title in the caption.</div></li><li><span class="b">2</span><div>Title field. Typing here switches the title on automatically.</div></li><li><span class="b">3</span><div>X axis label.</div></li><li><span class="b">4</span><div>Y axis label.</div></li><li><span class="b">5</span><div>Footnote, shown under the figure. Good for sample size and abbreviations.</div></li><li><span class="b">6</span><div>Reset text to the sheet's suggestions.</div></li></ol></div></div>
+    <h3>Before and after</h3>
+    <p>The left picture is the starting text. The right picture has an edited title, Y axis label and footnote.</p>
+    <div class="grid c2"><figure><a class="zoom" href="img/text_before.webp" title="Open the full-size picture"><img class="shot" src="img/text_before.webp" alt="Starting text, title off." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 27.</b> Starting text, title off.</figcaption></figure><figure><a class="zoom" href="img/text_after.webp" title="Open the full-size picture"><img class="shot" src="img/text_after.webp" alt="Edited text, title on." width="798" height="587" loading="lazy" decoding="async"></a><figcaption><b>Figure 28.</b> Edited text, title on.</figcaption></figure></div>
+    <h3>Undoing your edits</h3>
+    <p>Click <b>Reset text to the sheet's suggestions</b> to discard everything you typed and go back to the automatic text. The title switch stays as it was.</p>
+    <div class="box warn"><b>Watch out.</b> The footnote often carries the sample size. Check that it still matches your chart after you change filters or groups.</div>
+    </section>
+<section class="pb"><div class="stephead" id="s6"><span class="num">6</span><h2>Pick a size</h2></div>
+    <p>Journals publish figures at fixed widths. Choose the width that matches the column you are writing for, so the text keeps its intended size.</p>
+    <div class="side"><figure><a class="zoom" href="img/13_size_card.webp" title="Open the full-size picture"><img class="shot" src="img/13_size_card.webp" alt="The Size card." width="399" height="168" loading="lazy" decoding="async"></a><figcaption><b>Figure 29.</b> The Size card.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>Single column, 1.5 column or double column. The selected one is highlighted.</div></li><li><span class="b">2</span><div>The note that your choices are remembered.</div></li><li><span class="b">3</span><div>Reset saved preferences. It clears everything the app saved on this device.</div></li></ol></div></div>
+    <table class="tbl"><tr><th>Choice</th><th>Width</th><th>Exported PNG at 300 dpi</th></tr>
+      <tr><td>Single column</td><td>3.5 in</td><td>1050 px wide</td></tr>
+      <tr><td>1.5 column</td><td>5.2 in</td><td>1559 px wide</td></tr>
+      <tr><td>Double column</td><td>7.2 in</td><td>2159 px wide</td></tr></table>
+    <p>The height follows the content. The exact pixel size of the current figure is printed under the preview.</p>
+    <p>Figure Studio remembers your style, palette, colours, patterns, title switch and size on this device, so the next visit starts where you left off. It never saves your data or your typed text. If you want the defaults back, click Reset saved preferences under the size buttons.</p>
+    </section>
+<section class="pb"><h3 style="margin-top:0">The same chart at three widths</h3>
+    <p>These three captures use the same scale, so you can see the real size difference. They are drawn smaller than life to fit the page. Narrower figures wrap or rotate long labels to fit, as the single-column version shows.</p>
+    <div class="rowfig"><figure class=""><a class="zoom" href="img/size_single.webp" title="Open the full-size picture"><img class="shot" src="img/size_single.webp" alt="Single column." width="537" height="529" loading="lazy" decoding="async"></a><figcaption><b>Figure 30.</b> Single column.</figcaption></figure><figure class=""><a class="zoom" href="img/size_mid.webp" title="Open the full-size picture"><img class="shot" src="img/size_mid.webp" alt="1.5 column." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 31.</b> 1.5 column.</figcaption></figure></div>
+    <figure class=""><a class="zoom" href="img/size_double.webp" title="Open the full-size picture"><img class="shot" src="img/size_double.webp" alt="Double column." width="1012" height="623" loading="lazy" decoding="async"></a><figcaption><b>Figure 32.</b> Double column.</figcaption></figure>
+    </section>
+<section class="pb"><div class="stephead" id="s7"><span class="num">7</span><h2>Export the figure</h2></div>
+    <p>Three buttons sit at the bottom of the control panel. They are always visible, however far you scroll the cards.</p>
+    <div class="side"><figure><a class="zoom" href="img/14_export_buttons.webp" title="Open the full-size picture"><img class="shot" src="img/14_export_buttons.webp" alt="The export bar." width="383" height="86" loading="lazy" decoding="async"></a><figcaption><b>Figure 33.</b> The export bar.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div><b>Download PNG</b>: a 300 dpi picture for Word, PowerPoint or a journal upload form.</div></li><li><span class="b">2</span><div><b>SVG</b>: a vector file for editing in Illustrator or Inkscape, or for journals that ask for vector art.</div></li><li><span class="b">3</span><div><b>Copy</b>: puts the PNG on the clipboard so you can paste it straight into a document.</div></li></ol></div></div>
+    <h3>Download PNG</h3>
+    <ol class="steps">
+      <li><span class="n">1</span><div>Check the preview and the size readout.</div></li>
+      <li><span class="n">2</span><div>Click <b>Download PNG</b>.</div></li>
+      <li><span class="n">3</span><div>A green message under the buttons confirms the file name. The browser saves it to your Downloads folder.</div></li>
+    </ol>
+    <div class="side"><figure><a class="zoom" href="img/14_export_saved.webp" title="Open the full-size picture"><img class="shot" src="img/14_export_saved.webp" alt="The confirmation message after clicking Download PNG." width="425" height="100" loading="lazy" decoding="async"></a><figcaption><b>Figure 34.</b> The confirmation message after clicking Download PNG.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>The saved file name. It records the chart type, style and size, here <code>figure_meanci_bars_mid.png</code>.</div></li></ol></div></div>
+    <p>This is the actual file the app produced when the button was clicked for this guide. It measures 1559 by 1078 pixels at 300 dpi.</p>
+    <figure class="center"><a class="zoom" href="img/exported_figure.webp" title="Open the full-size picture"><img class="shot" src="img/exported_figure.webp" alt="The downloaded PNG, shown at about 70 percent of its real size." width="779" height="539" loading="lazy" decoding="async"></a><figcaption><b>Figure 35.</b> The downloaded PNG, shown at about 70 percent of its real size.</figcaption></figure>
+    </section>
+<section>
+    <h3>SVG and Copy</h3>
+    <ul class="plainlist">
+      <li>Click <b>SVG</b> and you get a file with the same name ending in <code>.svg</code>. Text stays as editable text and shapes stay editable in a vector editor.</li>
+      <li>Click <b>Copy</b>, then paste into Word or PowerPoint with Ctrl+V. The message under the buttons says when the copy is done.</li>
+    </ul>
+    <div class="side"><figure><a class="zoom" href="img/17_copy_done.webp" title="Open the full-size picture"><img class="shot" src="img/17_copy_done.webp" alt="The message after clicking Copy." width="372" height="100" loading="lazy" decoding="async"></a><figcaption><b>Figure 36.</b> The message after clicking Copy.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>Copy confirmation.</div></li></ol></div></div>
+    <h3>If the browser blocks saving or copying</h3>
+    <p>Some browsers and embedded views block clipboard access. The app then opens a window showing the finished image. Right-click it and choose <b>Copy image</b> or <b>Save image as</b>. On a phone, press and hold the image. Click <b>Close</b> or press <kbd>Esc</kbd> to leave the window.</p>
+    <figure class="center"><a class="zoom" href="img/17_copy_modal.webp" title="Open the full-size picture"><img class="shot" src="img/17_copy_modal.webp" alt="The fallback window, shown here by simulating a browser that blocks clipboard writes." width="1440" height="1000" loading="lazy" decoding="async"></a><figcaption><b>Figure 37.</b> The fallback window, shown here by simulating a browser that blocks clipboard writes.</figcaption></figure>
+    <div class="box tip"><b>Tip.</b> Always open the saved PNG once and look at it at full size before you send it anywhere. Check that labels are readable and nothing is cut off.</div>
+    </section>
+<section class="pb"><h2 id="gal" class="plain">The ten chart types</h2>
+    <p>The app recognises these ten tables by their column headers. The table below says what each type shows and which styles it offers. After it, every type has its column names and a sample figure in its default style.</p>
+    <table class="tbl small"><tr><th>Chart type</th><th>Shows</th><th>Styles</th></tr>
+    <tr><td>Bar / Pie</td><td>Distribution of one variable</td><td>Vertical bars, Horizontal bars, Lollipop, Donut, Single stacked bar</td></tr><tr><td>Histogram</td><td>Binned distribution</td><td>Bars, Outline, Cumulative line</td></tr><tr><td>Grouped / stacked</td><td>X broken down by a group</td><td>Grouped bars, Stacked bars, 100% stacked horizontal, Heatmap, Dot plot</td></tr><tr><td>Mean by group</td><td>Means with 95% confidence intervals</td><td>Bars, Dots, Line, Forest (horizontal) with 95% CI</td></tr><tr><td>Box plot</td><td>Distribution of Y for each X</td><td>Box and whiskers, Horizontal boxes, Minimal (IQR bar)</td></tr><tr><td>Scatter</td><td>One point per respondent (demonstration data)</td><td>Points, Points with trend line, Colour and shape by group, Small multiples by group</td></tr><tr><td>Bubble / heatmap</td><td>X by Y with counts</td><td>Bubbles, Heatmap</td></tr><tr><td>Line</td><td>Responses over time</td><td>Daily responses (bars), Cumulative (lines), Mean of Y by day</td></tr><tr><td>Item battery</td><td>Likert scale items</td><td>Diverging stacked bars, 100% stacked bars, Ranked means, Heatmap</td></tr><tr><td>Correlation heatmap</td><td>All Spearman pairs</td><td>Triangle with coefficients, Full matrix, Circle matrix, Strongest pairs (ranked)</td></tr></table></section>
+<section class="pb galpage"><div class="galitem"><h3>Bar / Pie</h3><p class="meta"><b>Use it for:</b> Distribution of one variable.<br><b>Table columns:</b> <code>category, code, count, percent, cumulative_percent</code><br><b>Styles:</b> Vertical bars, Horizontal bars, Lollipop, Donut, Single stacked bar.</p><figure class=""><a class="zoom" href="img/gal_bar.webp" title="Open the full-size picture"><img class="shot" src="img/gal_bar.webp" alt="Bar / Pie in its default style." width="798" height="493" loading="lazy" decoding="async"></a><figcaption><b>Figure 38.</b> Bar / Pie in its default style.</figcaption></figure></div><div class="galitem"><h3>Histogram</h3><p class="meta"><b>Use it for:</b> Binned distribution.<br><b>Table columns:</b> <code>bin_label, bin_start, bin_end_exclusive, count, percent, cumulative_percent</code><br><b>Styles:</b> Bars, Outline, Cumulative line.</p><figure class=""><a class="zoom" href="img/gal_hist.webp" title="Open the full-size picture"><img class="shot" src="img/gal_hist.webp" alt="Histogram in its default style." width="798" height="493" loading="lazy" decoding="async"></a><figcaption><b>Figure 39.</b> Histogram in its default style.</figcaption></figure></div></section>
+<section class="pb galpage"><div class="galitem"><h3>Grouped / stacked</h3><p class="meta"><b>Use it for:</b> X broken down by a group.<br><b>Table columns:</b> <code>category, one column per group, total</code><br><b>Styles:</b> Grouped bars, Stacked bars, 100% stacked horizontal, Heatmap, Dot plot.</p><figure class=""><a class="zoom" href="img/gal_grouped.webp" title="Open the full-size picture"><img class="shot" src="img/gal_grouped.webp" alt="Grouped / stacked in its default style." width="798" height="504" loading="lazy" decoding="async"></a><figcaption><b>Figure 40.</b> Grouped / stacked in its default style.</figcaption></figure></div><div class="galitem"><h3>Mean by group</h3><p class="meta"><b>Use it for:</b> Means with 95% confidence intervals.<br><b>Table columns:</b> <code>x_category, group_category, x_code, group_code, n, mean, sd, se, ci95_low, ci95_high</code><br><b>Styles:</b> Bars, Dots, Line, Forest (horizontal) with 95% CI.</p><figure class=""><a class="zoom" href="img/gal_meanci.webp" title="Open the full-size picture"><img class="shot" src="img/gal_meanci.webp" alt="Mean by group in its default style." width="798" height="552" loading="lazy" decoding="async"></a><figcaption><b>Figure 41.</b> Mean by group in its default style.</figcaption></figure></div></section>
+<section class="pb galpage"><div class="galitem"><h3>Box plot</h3><p class="meta"><b>Use it for:</b> Distribution of Y for each X.<br><b>Table columns:</b> <code>x_category, group_category, x_code, group_code, n, min, q1, median, q3, max, mean, whisker_low, whisker_high, n_outliers</code><br><b>Styles:</b> Box and whiskers, Horizontal boxes, Minimal (IQR bar).</p><figure class=""><a class="zoom" href="img/gal_box.webp" title="Open the full-size picture"><img class="shot" src="img/gal_box.webp" alt="Box plot in its default style." width="798" height="549" loading="lazy" decoding="async"></a><figcaption><b>Figure 42.</b> Box plot in its default style.</figcaption></figure></div><div class="galitem"><h3>Scatter</h3><p class="meta"><b>Use it for:</b> One point per respondent (demonstration data).<br><b>Table columns:</b> <code>case_id, x_value, y_value, x_label, y_label, group_code, group_label</code><br><b>Styles:</b> Points, Points with trend line, Colour and shape by group, Small multiples by group.</p><figure class=""><a class="zoom" href="img/gal_scatter.webp" title="Open the full-size picture"><img class="shot" src="img/gal_scatter.webp" alt="Scatter in its default style." width="798" height="530" loading="lazy" decoding="async"></a><figcaption><b>Figure 43.</b> Scatter in its default style.</figcaption></figure></div></section>
+<section class="pb galpage"><div class="galitem"><h3>Bubble / heatmap</h3><p class="meta"><b>Use it for:</b> X by Y with counts.<br><b>Table columns:</b> <code>x_label, y_label, x_value, y_value, count, percent</code><br><b>Styles:</b> Bubbles, Heatmap.</p><figure class=""><a class="zoom" href="img/gal_bubble.webp" title="Open the full-size picture"><img class="shot" src="img/gal_bubble.webp" alt="Bubble / heatmap in its default style." width="798" height="619" loading="lazy" decoding="async"></a><figcaption><b>Figure 44.</b> Bubble / heatmap in its default style.</figcaption></figure></div><div class="galitem"><h3>Line</h3><p class="meta"><b>Use it for:</b> Responses over time.<br><b>Table columns:</b> <code>date, recorded, eligible, cumulative_recorded, cumulative_eligible, mean_of_y</code><br><b>Styles:</b> Daily responses (bars), Cumulative (lines), Mean of Y by day.</p><figure class=""><a class="zoom" href="img/gal_line.webp" title="Open the full-size picture"><img class="shot" src="img/gal_line.webp" alt="Line in its default style." width="798" height="482" loading="lazy" decoding="async"></a><figcaption><b>Figure 45.</b> Line in its default style.</figcaption></figure></div></section>
+<section class="pb galpage"><div class="galitem"><h3>Item battery</h3><p class="meta"><b>Use it for:</b> Likert scale items.<br><b>Table columns:</b> <code>item, n, mean_code, then one column per answer category</code><br><b>Styles:</b> Diverging stacked bars, 100% stacked bars, Ranked means, Heatmap.</p><figure class=""><a class="zoom" href="img/gal_likert.webp" title="Open the full-size picture"><img class="shot" src="img/gal_likert.webp" alt="Item battery in its default style." width="798" height="673" loading="lazy" decoding="async"></a><figcaption><b>Figure 46.</b> Item battery in its default style.</figcaption></figure></div></section>
+<section class="pb galpage"><div class="galitem"><h3>Correlation heatmap</h3><p class="meta"><b>Use it for:</b> All Spearman pairs.<br><b>Table columns:</b> <code>variable_a, variable_b, n, rho, p_value, p_bonferroni, direction, strength</code><br><b>Styles:</b> Triangle with coefficients, Full matrix, Circle matrix, Strongest pairs (ranked).</p><figure class=""><a class="zoom" href="img/gal_corr.webp" title="Open the full-size picture"><img class="shot" src="img/gal_corr.webp" alt="Correlation heatmap in its default style." width="798" height="833" loading="lazy" decoding="async"></a><figcaption><b>Figure 47.</b> Correlation heatmap in its default style.</figcaption></figure></div></section>
+<section class="pb"><h2 id="check" class="plain">Quick checklist</h2>
+    <p>Use this once you know your way around.</p>
+    <ol class="check">
+      <li>In Graph_Maker, set the graph type, X, Y, group and filter. Wait for the table.</li>
+      <li>Ctrl+A, Ctrl+C in the sheet.</li>
+      <li>Open Figure Studio and press Ctrl+V on the page. Confirm the chart type tag.</li>
+      <li>Choose a Style.</li>
+      <li>Set the palette. Use Okabe-Ito or Paul Tol if colour-blind readers matter. Use Greyscale with Patterns for black-and-white print.</li>
+      <li>Edit the Title (if you want one), axis labels and footnote. Check the sample size in the footnote.</li>
+      <li>Choose the Size that matches the journal column.</li>
+      <li>Read the warning line under the preview if there is one.</li>
+      <li>Click Download PNG, or SVG for vector art, or Copy for a document.</li>
+      <li>Open the saved file at full size and check it.</li>
+    </ol>
+    <h3>Handy facts</h3>
+    <ul class="plainlist">
+      <li>Ctrl+V works anywhere on the page except inside a text box.</li>
+      <li>Esc closes the image window.</li>
+      <li>Your style, palette, colours, patterns, title switch and size are remembered on this device, even after you close the page. Your data and typed text are not: they reset when you load a new table, and reloading the page starts again from the built-in example.</li>
+      <li>Colours repeat after six groups. If a warning says so, filter the groups in Graph_Maker.</li>
+    </ul></section>
+<section class="pb"><h2 id="trouble" class="plain">Troubleshooting</h2>
+    <table class="tbl small"><tr><th>What you see</th><th>What to do</th></tr>
+    <tr><td>No Graph_Maker table found</td><td>Copy the table including its header row, or the whole Graph_Maker sheet.</td></tr>
+    <tr><td>This workbook has no Graph_Maker sheet</td><td>Open the study workbook, or paste the table instead of uploading a different file.</td></tr>
+    <tr><td>Graph_Maker has no calculated table</td><td>Open the workbook in OnlyOffice or Excel, let it recalculate, save it, and upload again.</td></tr>
+    <tr><td>The Excel reader could not load</td><td>You are offline or the network blocks the library. Paste the cells or use a CSV file.</td></tr>
+    <tr><td>Ctrl+V does nothing</td><td>Click the page background first, outside any text box. Or use the paste box in the Data card.</td></tr>
+    <tr><td>This chart could not be drawn</td><td>The table does not have what that style needs. Try another style, or copy the table again.</td></tr>
+    <tr><td>The text looks wrong after changing options</td><td>Click Reset text to the sheet's suggestions.</td></tr>
+    <tr><td>Nothing happens on Download</td><td>Allow downloads for the site. Or use the image window and right-click to save.</td></tr>
+    <tr><td>The page opens with settings I did not choose</td><td>Another person may have used this browser, or you changed them earlier. Click Reset saved preferences in the Size card.</td></tr>
+    <tr><td>Labels are tilted or crowded</td><td>Choose a wider Size, or a horizontal style such as Horizontal bars or Forest.</td></tr>
+    </table>
+    <h3>A warning about many groups</h3>
+    <p>When a table has more than six groups, a line appears under the preview. Colours repeat after six groups, so groups start to look alike.</p>
+    <div class="side"><figure><a class="zoom" href="img/18_warn_line.webp" title="Open the full-size picture"><img class="shot" src="img/18_warn_line.webp" alt="The warning line under the preview, shown here for a demonstration table with seven groups." width="537" height="34" loading="lazy" decoding="async"></a><figcaption><b>Figure 48.</b> The warning line under the preview, shown here for a demonstration table with seven groups.</figcaption></figure><div class="sidetxt"><ol class="legend "><li><span class="b">1</span><div>The warning. It says how many groups the table has and suggests filtering in Graph_Maker.</div></li></ol></div></div>
+    <div class="box tip"><b>Tip.</b> Filter or merge groups in Graph_Maker rather than relying on readers to tell seven colours apart.</div>
+    </section>
+    <footer class="foot">
+      <p>This page and the <a href="../Figure_Studio_Guide.pdf">PDF</a> are generated from the same source, so they always match.</p>
+      <p>Developers and maintainers: see the <a href="https://github.com/AbbasCherri/hidden-costs-figures#readme">technical guide</a> and the <a href="https://github.com/AbbasCherri/hidden-costs-figures">source on GitHub</a>.</p>
+    </footer>
+  </main>
+</div>
+<script>
+/* Highlight the current section in the contents. The page works without this. */
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.snav a, .mnav a'));
+  var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  var seen = [], i;
+  for (i = 0; i < targets.length; i++) if (targets[i] && seen.indexOf(targets[i]) < 0) seen.push(targets[i]);
+  function update() {
+    var current = seen[0];
+    seen.forEach(function (t) { if (t.getBoundingClientRect().top <= 140) current = t; });
+    links.forEach(function (a) {
+      if (current && a.getAttribute('href') === '#' + current.id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  var ticking = false;
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; update(); }); } }, { passive: true });
+  addEventListener('resize', update); update();
+})();
+</script>
+</body>
+</html>
